@@ -1,8 +1,7 @@
 name: checkly
-on:
-  [deployment_status]
+on: [deployment_status]
 jobs:
-  e2e:
+  test:
     if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
