@@ -11,6 +11,6 @@ new BrowserCheck('home-check-1', {
   frequency: 15,
   regions: ['ap-south-1', 'us-west-2'],
   code: {
-    entrypoint: path.join(__dirname, 'home.spec.ts')
+    entrypoint: path.join(__dirname, 'home.spec.js')
   },
 })
