@@ -1,7 +1,8 @@
-import { ApiCheck } from '@checkly/cli/dist/constructs'
-import defaults from './defaults'
+const { constructs } = require('@checkly/cli')
+const { ApiCheck } = constructs
+const { defaults } = require('./defaults')
 
-const api : ApiCheck = new ApiCheck('hello-api', {
+new ApiCheck('hello-api', {
   name: 'Hello API',
   request: {
     method: 'GET',

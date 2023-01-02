@@ -1,5 +1,4 @@
-import { test, expect } from '@playwright/test';
-// import defaults from './defaults'
+const { test, expect } = require('@playwright/test')
 
 test('Mac Demo Home', async ({ page }) => {
   const response = await page.goto('https://mac-demo-repo.vercel.app')
