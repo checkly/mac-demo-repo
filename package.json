@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test:e2e:checkly": "npx checkly test"
+    "checkly:test": "npx checkly test",
+    "checkly:test": "npx checkly deploy --force"
   },
   "dependencies": {
     "@next/font": "13.1.1",

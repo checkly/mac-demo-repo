@@ -4,6 +4,6 @@ test('Mac Demo Home', async ({ page }) => {
   console.log(`Using pageUrl: ${defaults.pageUrl}`)
   const response = await page.goto(defaults.pageUrl)
   expect(response.status()).toBeLessThan(400)
-  await expect(page).toHaveTitle(/Next/)
+  await expect(page).toHaveTitle(/Nextsdasad/)
   await page.screenshot({ path: 'homepage.jpg' })
 })

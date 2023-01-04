@@ -18,9 +18,14 @@ jobs:
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: npm ci
       - name: Run checks
-        run: npm run test:e2e:checkly
+        id: run-checks
+        run: npm run checkly:test
+        continue-on-error: true
         env:
           ENVIRONMENT_URL: ${{ github.event.deployment_status.target_url }}
           CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
           CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
+      - name: Deploy checks
+        if: steps.run-checks.outcome == 'success'
+        run: npm run checkly:deploy
 
