@@ -8,7 +8,7 @@ const { BrowserCheck } = require('@checkly/cli/constructs')
 new BrowserCheck('home-check-1', {
   name: 'HomePage',
   frequency: 15,
-  regions: ['ap-south-1', 'us-west-2'],
+  locations: ['ap-south-1', 'us-west-2'],
   code: {
     entrypoint: path.join(__dirname, 'home.spec.js')
   },
