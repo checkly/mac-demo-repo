@@ -18,7 +18,7 @@ jobs:
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: npm ci
       - name: Run checks
-        run: npm run test:e2e:checkly -- -env ENVIRONMENT_URL=ENVIRONMENT_URL
+        run: npm run test:e2e:checkly
         env:
           ENVIRONMENT_URL: ${{ github.event.deployment_status.target_url }}
           CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
