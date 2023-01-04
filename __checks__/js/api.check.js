@@ -1,9 +1,17 @@
-const { constructs } = require('@checkly/cli')
-const { ApiCheck } = constructs
+const { ApiCheck } = require('@checkly/cli/constructs')
 const { defaults } = require('./defaults')
+const path = require('path')
+const { readFileSync } = require('fs')
 
-new ApiCheck('hello-api', {
+
+new ApiCheck('hello-api-1', {
   name: 'Hello API',
+  onSetup: async ({ request }) => {
+    request.headers['X-something'] = 'TOKEN'
+    return { request }
+  },
+  localSetupScript: readFileSync(path.join(__dirname, 'setup.js'), 'utf-8'),
+  localTearDownScript: readFileSync(path.join(__dirname, 'teardown.js'), 'utf-8'),
   request: {
     method: 'GET',
     url: `${defaults.pageUrl}/api/hello`,
