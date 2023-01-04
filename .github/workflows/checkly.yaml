@@ -1,5 +1,9 @@
 name: checkly
 on: [deployment_status]
+env:
+  ENVIRONMENT_URL: ${{ github.event.deployment_status.target_url }}
+  CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
+  CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
 jobs:
   test-e2e:
     if: github.event.deployment_status.state == 'success'
@@ -21,10 +25,6 @@ jobs:
         id: run-checks
         run: npm run checkly:test
         continue-on-error: true
-        env:
-          ENVIRONMENT_URL: ${{ github.event.deployment_status.target_url }}
-          CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
-          CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
       - name: Deploy checks
         if: steps.run-checks.outcome == 'success'
         run: npm run checkly:deploy
