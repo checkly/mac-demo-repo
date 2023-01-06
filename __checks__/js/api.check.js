@@ -15,7 +15,7 @@ new ApiCheck('hello-api-1', {
     skipSsl: false,
     followRedirects: true,
     assertions: [
-      { source: 'STATUS_CODE', regex: '', property: '', comparison: 'EQUALS', target: '201' },
+      { source: 'STATUS_CODE', regex: '', property: '', comparison: 'EQUALS', target: '200' },
       { source: 'JSON_BODY', regex: '', property: '$.name', comparison: 'NOT_EMPTY', target: '' }
     ]
   }
