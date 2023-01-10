@@ -21,6 +21,6 @@
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
-    "@checkly/cli": "^0.3.1-alpha4"
+    "@checkly/cli": "^0.3.3"
   }
 }
