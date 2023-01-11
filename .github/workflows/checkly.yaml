@@ -8,8 +8,9 @@ env:
   CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
   CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
 jobs:
-  name: echo JSON
-  run: echo 'Job context is ${{ toJSON(github.event) }}'
+  json-echo:
+    name: echo JSON
+    run: echo 'Job context is ${{ toJSON(github.event) }}'
   test-e2e:
     if: github.event.deployment_status.state == 'success'
     name: Test E2E on Checkly
