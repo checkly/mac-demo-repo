@@ -10,9 +10,8 @@ env:
   CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
   CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
 jobs:
-  test-e2e:
-    if: github.event.deployment_status.state == 'success'
-    name: Test E2E on Checkly
+  test:
+    name: wait for Vercel Deploy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
