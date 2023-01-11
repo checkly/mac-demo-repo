@@ -1,7 +1,7 @@
 name: checkly
 on: [deployment_status]
 env:
-  ENVIRONMENT_URL: ${{ github.event.deployment_status.target_url }}
+  ENVIRONMENT_URL: ${{ github.event.deployment_status.environment_url }}
   CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
   CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
 jobs:
