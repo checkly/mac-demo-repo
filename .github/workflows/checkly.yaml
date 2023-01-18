@@ -1,7 +1,10 @@
 name: checkly
 on: [deployment_status]
 env:
-  ENVIRONMENT_URL: ${{ github.event.deployment_status.target_url }}
+  ENVIRONMENT_URL: ${{ github.event.deployment_status.environment_url }}
+  DEPLOYMENT_ID: ${{ github.event.deployment.id }}
+  DEPLOYMENT_ENVIRONMENT: ${{ github.event.deployment_status.environment }}
+  DEPLOYMENT_CREATOR_NAME: ${{ github.event.deployment_status.creator.name }}
   CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
   CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
 jobs:
@@ -21,6 +24,8 @@ jobs:
       - name: Install dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: npm ci
+      - name: echo JSON
+        run: echo 'Job context is ${{ toJSON(github.event) }}'
       - name: Run checks
         id: run-checks
         run: npm run checkly:test -- -e ENVIRONMENT_URL=${{ env.ENVIRONMENT_URL }}

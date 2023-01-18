@@ -4,7 +4,7 @@ const config = {
   repoUrl: 'https://github.com/checkly/mac-demo-repo',
   checks: {
     locations: ['eu-central-1', 'us-west-1'],
-    tags: ['mac']
+    tags: ['mac'],
   }
 }
 
