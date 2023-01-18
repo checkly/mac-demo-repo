@@ -2,7 +2,8 @@ const {
   SmsAlertChannel,
   EmailAlertChannel,
   WebhookAlertChannel,
-  SlackAlertChannel
+  SlackAlertChannel,
+  OpsgenieAlertChannel
 } = require('@checkly/cli/constructs')
 
 const sendDefaults = {
@@ -44,9 +45,17 @@ const webhookChannel = new WebhookAlertChannel('webhook-channel-1', {
   }`
 })
 
+const opsGenieChannel = new OpsgenieAlertChannel('opsgenie-channel-1', {
+  name: 'My Ops Team',
+  region: 'EU',
+  priority: 'P1',
+  apiKey: 'xxxx123abc'
+})
+
 module.exports = {
   smsChannel,
   emailChannel,
   webhookChannel,
-  slackChannel
+  slackChannel,
+  opsGenieChannel
 }

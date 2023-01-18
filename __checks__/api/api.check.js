@@ -1,8 +1,8 @@
 const { ApiCheck } = require('@checkly/cli/constructs')
 const path = require('path')
 const { readFileSync } = require('fs')
-const { webhookChannel } = require('../../../__checks__/alert-channels')
-const { defaults } = require('../../../__checks__/defaults')
+const { webhookChannel } = require('../alert-channels')
+const { defaults } = require('../defaults')
 
 new ApiCheck('hello-api-1', {
   name: 'Hello API',
