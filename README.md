@@ -3,8 +3,9 @@ It is based on a simple Nextjs getting started template.
 
 Checkly's MaC workflow brings:
 
-- Synthetic monitoring checks defined in your code base.
+- Synthetic monitoring checks for E2E and API endpoints defined in your code base.
 - A local, JS/TS workflow: no more click ops, no more HCL, no more YAML.
+- Use `@playwright/test` to test your webapp around the clock and at deploy time.
 - Branch aware, working perfectly with GitHub|Lab and Preview deployments.
 
 # Project structure
@@ -44,6 +45,7 @@ You can clone this repo and run the check for yourself. Start with a
 ```bash
 git clone https://github.com/checkly/mac-demo-repo.git
 cd mac-demo-repo
+npm install
 ```
 
 1. Make sure you have signed up for a free Checkly account over at https://www.checklyhq.com/
@@ -74,8 +76,21 @@ To deploy these checks to your Checkly account, just run:
 npx checkly deploy
 ```
 
+You now have a set of synthetic monitoring checks running around the clock.
+
 If you clone this repo and deploy it to Vercel or another provider, make sure to update the `pageUrl` variable in the 
 `__checks__/defaults.js` file to your own domain.
+
+## Usage in CI
+
+Preferably, you lifecycle your checks with your codebase, smoke test them with `npx checkly test` and deploy them to Checkly
+only when your checks are solid. The file `.github/workflows/checkly.yaml` shows how you can do this with GitHub Actions.
+
+However, this pattern is adaptable to any CI system. The crux is:
+
+1. Wait for a deploy to a Staging / Preview or Production environment to finish.
+2. Run the `npx checkly test` command.
+3. If it passes, run `npx checkly deploy`, if not abort.
 
 ## Building the project
 

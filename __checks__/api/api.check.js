@@ -25,6 +25,7 @@ new ApiCheck('product-api-2', {
   name: 'Product API',
   localSetupScript: readFileSync(path.join(__dirname, 'setup.js'), 'utf-8'),
   localTearDownScript: readFileSync(path.join(__dirname, 'teardown.js'), 'utf-8'),
+  alertChannels: [webhookChannel],
   request: {
     method: 'GET',
     url: `${defaults.pageUrl}/api/products`,

@@ -24,8 +24,6 @@ jobs:
       - name: Install dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: npm ci
-      - name: echo JSON
-        run: echo 'Job context is ${{ toJSON(github.event) }}'
       - name: Run checks
         id: run-checks
         run: npm run checkly:test -- -e ENVIRONMENT_URL=${{ env.ENVIRONMENT_URL }}
