@@ -1,5 +1,11 @@
-This is a repo used to demo and test the MaC workflow using the [Checkly CLI](https://github.com/checkly/checkly-cli). 
+This is a repo used to demo and test the Monitoring-as-Code (MaC) workflow using the [Checkly CLI](https://github.com/checkly/checkly-cli). 
 It is based on a simple Nextjs getting started template.
+
+Checkly's MaC workflow brings:
+
+- Synthetic monitoring checks defined in your code base.
+- A local, JS/TS workflow: no more click ops, no more HCL, no more YAML.
+- Branch aware, working perfectly with GitHub|Lab and Preview deployments.
 
 # Project structure
 
@@ -18,8 +24,8 @@ structure](https://github.com/checkly/checkly-cli#project-structure) to get all 
 .
 ├── checkly.config.js
 ├── __checks__
-│         ├── alert-channels.js
-|         ├── api
+│   ├── alert-channels.js
+│   ├── api
 │   │   ├── api.check.js
 │   │   ├── setup.js
 │   │   └── teardown.js
@@ -31,11 +37,52 @@ structure](https://github.com/checkly/checkly-cli#project-structure) to get all 
 │       └── product.spec.js
 ```
 
-## Running the project locally
+## Running the checks
+
+You can clone this repo and run the check for yourself. Start with a 
+
+```bash
+git clone https://github.com/checkly/mac-demo-repo.git
+cd mac-demo-repo
+```
+
+1. Make sure you have signed up for a free Checkly account over at https://www.checklyhq.com/
+2. Log in to your Checkly account with the CLI with `npx checkly login`
+3. With the project structure above, run the `npx checkly test` command and you will get an output similar to:
+
+```
+npx checkly test
+
+Running 5 checks in eu-central-1.
+
+__checks__/api/api.check.js
+  ✔ Hello API (187ms)
+  ✔ Product API (208ms)
+__checks__/home.check.js
+  ✔ HomePage (5s)
+__checks__/pages/about.spec.js
+  ✔ about.spec.js (6s)
+__checks__/pages/product.spec.js
+  ✔ product.spec.js (5s)
+
+5 passed, 5 total
+```
+
+To deploy these checks to your Checkly account, just run:
+
+```
+npx checkly deploy
+```
+
+If you clone this repo and deploy it to Vercel or another provider, make sure to update the `pageUrl` variable in the 
+`__checks__/defaults.js` file to your own domain.
+
+## Building the project
 
 First, run the development server:
 
 ```bash
+npm install
 npm run dev
 # or
 yarn dev
