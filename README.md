@@ -70,6 +70,11 @@ __checks__/pages/product.spec.js
 5 passed, 5 total
 ```
 
+What just happened?
+1. We bundled up your API checks and Playwright-based Browser checks and executed them against the stable 
+URL https://mac-demo-repo.vercel.app defined in the `__checks__/defaults.js` file. 
+2. We executed them from the region `us-east-1` on the 
+
 To deploy these checks to your Checkly account, just run:
 
 ```

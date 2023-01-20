@@ -3,7 +3,8 @@ const {
   EmailAlertChannel,
   WebhookAlertChannel,
   SlackAlertChannel,
-  OpsgenieAlertChannel
+  OpsgenieAlertChannel,
+  PagerdutyAlertChannel,
 } = require('@checkly/cli/constructs')
 
 const sendDefaults = {
@@ -52,10 +53,18 @@ const opsGenieChannel = new OpsgenieAlertChannel('opsgenie-channel-1', {
   apiKey: 'xxxx123abc'
 })
 
+const pagerdutyChannel = new PagerdutyAlertChannel('pagerduty-channel-1', {
+  account: 'ACME',
+  serviceName: 'ACME products',
+  serviceKey: '872b9b58ff4a9n06d0dl9f20487bbqwew'
+})
+
+
 module.exports = {
   smsChannel,
   emailChannel,
   webhookChannel,
   slackChannel,
-  opsGenieChannel
+  opsGenieChannel,
+  pagerdutyChannel
 }
